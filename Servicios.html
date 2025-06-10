@@ -174,6 +174,27 @@
       transition: fill var(--transition-speed);
       user-select: none;
     }
+    /* Cotizar button */
+    .cotizar-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: white;
+      background-color: var(--color-accent);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: background-color var(--transition-speed), transform 0.2s;
+      user-select: none;
+    }
+    .cotizar-button:hover {
+      background-color: #2563eb;
+      transform: scale(1.05);
+      outline: none;
+    }
     /* Popover */
     .popover {
       position: absolute;
@@ -242,12 +263,15 @@
           <h2 class="service-title">Reparación de Tejados</h2>
           <div class="service-price">Desde $250</div>
           <p class="service-description">Reparaciones y mantenimiento de todo tipo de tejados para proteger su hogar de filtraciones y daños.</p>
-          <button class="like-button" aria-pressed="false" aria-label="Me gusta reparación de tejados">
-            <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-            </svg>
-            <span class="like-count">0</span>
-          </button>
+          <div>
+            <button class="like-button" aria-pressed="false" aria-label="Me gusta reparación de tejados">
+              <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+              </svg>
+              <span class="like-count">0</span>
+            </button>
+            <button class="cotizar-button" aria-label="Cotizar reparación de tejados">Cotizar</button>
+          </div>
         </div>
         <div class="popover" id="popover-0" role="dialog" aria-modal="false" aria-labelledby="popover-0-title">
           <h3 id="popover-0-title">Reparación de Tejados</h3>
@@ -261,12 +285,15 @@
           <h2 class="service-title">Pintura y Acabados</h2>
           <div class="service-price">Desde $150</div>
           <p class="service-description">Mejore la apariencia de su hogar con pinturas profesionales y acabados de alta calidad.</p>
-          <button class="like-button" aria-pressed="false" aria-label="Me gusta pintura y acabados">
-            <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-            </svg>
-            <span class="like-count">0</span>
-          </button>
+          <div>
+            <button class="like-button" aria-pressed="false" aria-label="Me gusta pintura y acabados">
+              <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+              </svg>
+              <span class="like-count">0</span>
+            </button>
+            <button class="cotizar-button" aria-label="Cotizar pintura y acabados">Cotizar</button>
+          </div>
         </div>
         <div class="popover" id="popover-1" role="dialog" aria-modal="false" aria-labelledby="popover-1-title">
           <h3 id="popover-1-title">Pintura y Acabados</h3>
@@ -280,12 +307,15 @@
           <h2 class="service-title">Instalación Eléctrica</h2>
           <div class="service-price">Desde $300</div>
           <p class="service-description">Servicios confiables de instalación y mantenimiento eléctrico para garantizar la seguridad de su hogar.</p>
-          <button class="like-button" aria-pressed="false" aria-label="Me gusta instalación eléctrica">
-            <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-            </svg>
-            <span class="like-count">0</span>
-          </button>
+          <div>
+            <button class="like-button" aria-pressed="false" aria-label="Me gusta instalación eléctrica">
+              <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+              </svg>
+              <span class="like-count">0</span>
+            </button>
+            <button class="cotizar-button" aria-label="Cotizar instalación eléctrica">Cotizar</button>
+          </div>
         </div>
         <div class="popover" id="popover-2" role="dialog" aria-modal="false" aria-labelledby="popover-2-title">
           <h3 id="popover-2-title">Instalación Eléctrica</h3>
@@ -360,4 +390,3 @@
   </script>
 </body>
 </html>
-
