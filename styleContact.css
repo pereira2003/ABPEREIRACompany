@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap");
 
 * {
     margin: 0;
@@ -26,6 +26,7 @@ header {
 }
 
 .back-button {
+    font-family: var(--font-headline);
     display: inline-block;
     padding: 10px;
     background-color: #001f3f; /* Azul marino */
@@ -36,6 +37,7 @@ header {
 }
 
 .back-button:hover {
+    
     background-color: #003366; /* Color más oscuro al pasar el mouse */
 }
 
