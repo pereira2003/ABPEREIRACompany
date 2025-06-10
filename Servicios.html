@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Servicios - Reparación de Casa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #1f2937;
+      --color-accent: #3b82f6;
+      --color-bg: #ffffff;
+      --color-text: #4b5563;
+      --color-text-muted: #6b7280;
+      --color-like-active: #ef4444;
+      --border-radius: 0.75rem;
+      --shadow-light: rgba(0,0,0,0.1);
+      --font-headline: 'Poppins', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+      --transition-speed: 0.3s;
+    }
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--color-bg);
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      padding-top: 64px;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: var(--color-bg);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 1.5rem;
+      box-shadow: 0 2px 8px var(--shadow-light);
+      z-index: 100;
+    }
+    header button {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      font-size: 1rem;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color var(--transition-speed);
+      user-select: none;
+      box-shadow: 0 4px 10px rgba(59,130,246,0.3);
+    }
+    header button:hover,
+    header button:focus {
+      background: #003366;
+      outline: none;
+    }
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    /* Section title */
+    h1 {
+      font-family: var(--font-headline);
+      font-weight: 800;
+      font-size: 3rem;
+      color: var(--color-primary);
+      margin: 0 0 1rem;
+    }
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    /* Card */
+    .service-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: 0 6px 12px var(--shadow-light);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-speed);
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+    }
+    .service-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+    .service-content {
+      padding: 1rem 1.25rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .service-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 0.25rem;
+      color: var(--color-primary);
+      user-select: none;
+    }
+    .service-price {
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+      user-select: none;
+    }
+    .service-description {
+      font-size: 1rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    /* Like button */
+    .like-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: color var(--transition-speed), transform 0.2s;
+      user-select: none;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.375rem;
+    }
+    .like-button:hover {
+      color: var(--color-accent);
+      transform: scale(1.05);
+      outline: none;
+    }
+    .like-button.liked {
+      color: var(--color-like-active);
+    }
+    .like-icon {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      transition: fill var(--transition-speed);
+      user-select: none;
+    }
+    /* Popover */
+    .popover {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      max-width: 320px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-speed) ease;
+      user-select: text;
+    }
+    .popover.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .popover h3 {
+      margin: 0 0 0.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+    .popover p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+    /* Popover arrow */
+    .popover::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-bottom-color: white;
+      pointer-events: none;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.25rem;
+      }
+      .service-image {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button id="btn-home" aria-label="Regresar a Casa">Regresar a Casa</button>
+  </header>
+  <main>
+    <h1>Servicios</h1>
+    <section class="services-grid" aria-label="Lista de servicios de reparación de casa">
+      <!-- Service Card 1 -->
+      <article class="service-card" tabindex="0" data-service="0" aria-describedby="popover-0-desc" aria-haspopup="dialog">
+        <img class="service-image" src="img/Galeria 4.png" alt="Reparación de tejados" />
+        <div class="service-content">
+          <h2 class="service-title">Reparación de Tejados</h2>
+          <div class="service-price">Desde $250</div>
+          <p class="service-description">Reparaciones y mantenimiento de todo tipo de tejados para proteger su hogar de filtraciones y daños.</p>
+          <button class="like-button" aria-pressed="false" aria-label="Me gusta reparación de tejados">
+            <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+            </svg>
+            <span class="like-count">0</span>
+          </button>
+        </div>
+        <div class="popover" id="popover-0" role="dialog" aria-modal="false" aria-labelledby="popover-0-title">
+          <h3 id="popover-0-title">Reparación de Tejados</h3>
+          <p id="popover-0-desc">Servicio especializado para reparaciones rápidas y duraderas en tejados de casas, incluyendo impermeabilización y refuerzos estructurales.</p>
+        </div>
+      </article>
+      <!-- Service Card 2 -->
+      <article class="service-card" tabindex="0" data-service="1" aria-describedby="popover-1-desc" aria-haspopup="dialog">
+        <img class="service-image" src="img/Galeria 1.png" alt="Pintura y acabados" />
+        <div class="service-content">
+          <h2 class="service-title">Pintura y Acabados</h2>
+          <div class="service-price">Desde $150</div>
+          <p class="service-description">Mejore la apariencia de su hogar con pinturas profesionales y acabados de alta calidad.</p>
+          <button class="like-button" aria-pressed="false" aria-label="Me gusta pintura y acabados">
+            <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+            </svg>
+            <span class="like-count">0</span>
+          </button>
+        </div>
+        <div class="popover" id="popover-1" role="dialog" aria-modal="false" aria-labelledby="popover-1-title">
+          <h3 id="popover-1-title">Pintura y Acabados</h3>
+          <p id="popover-1-desc">Aplicación experta de pinturas, barnices y otros acabados para renovar y proteger superficies interiores y exteriores.</p>
+        </div>
+      </article>
+      <!-- Service Card 3 -->
+      <article class="service-card" tabindex="0" data-service="2" aria-describedby="popover-2-desc" aria-haspopup="dialog">
+        <img class="service-image" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" alt="Instalación eléctrica" />
+        <div class="service-content">
+          <h2 class="service-title">Instalación Eléctrica</h2>
+          <div class="service-price">Desde $300</div>
+          <p class="service-description">Servicios confiables de instalación y mantenimiento eléctrico para garantizar la seguridad de su hogar.</p>
+          <button class="like-button" aria-pressed="false" aria-label="Me gusta instalación eléctrica">
+            <svg class="like-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+            </svg>
+            <span class="like-count">0</span>
+          </button>
+        </div>
+        <div class="popover" id="popover-2" role="dialog" aria-modal="false" aria-labelledby="popover-2-title">
+          <h3 id="popover-2-title">Instalación Eléctrica</h3>
+          <p id="popover-2-desc">Instalación profesional de sistemas eléctricos, cables y tableros con cumplimiento estricto de normas de seguridad.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    // Navigate "Regresar a Casa" button - for demo just goes to "#"
+    const btnHome = document.getElementById('btn-home');
+    btnHome.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+
+    // Like buttons logic
+    const likeButtons = document.querySelectorAll('.like-button');
+    likeButtons.forEach(button => {
+      button.liked = false;
+      button.count = 0;
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        button.liked = !button.liked;
+        button.count = button.liked ? button.count + 1 : button.count - 1;
+        if (button.liked) {
+          button.classList.add('liked');
+          button.setAttribute('aria-pressed', 'true');
+        } else {
+          button.classList.remove('liked');
+          button.setAttribute('aria-pressed', 'false');
+        }
+        button.querySelector('.like-count').textContent = button.count;
+      });
+    });
+
+    // Popover logic
+    const cards = document.querySelectorAll('.service-card');
+    cards.forEach(card => {
+      const popover = card.querySelector('.popover');
+      const index = card.dataset.service;
+      card.addEventListener('click', (e) => {
+        // Close any other popovers first
+        document.querySelectorAll('.popover.visible').forEach(p => {
+          if(p !== popover) p.classList.remove('visible');
+        });
+        // Toggle this popover
+        if (popover.classList.contains('visible')) {
+          popover.classList.remove('visible');
+        } else {
+          popover.classList.add('visible');
+          // Focus popover for accessibility
+          popover.querySelector('h3').focus();
+        }
+      });
+
+      // Close popover if click outside
+      document.addEventListener('click', (e) => {
+        if (!card.contains(e.target)) {
+          popover.classList.remove('visible');
+        }
+      });
+
+      // Keyboard accessibility to close popover with Escape key
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          popover.classList.remove('visible');
+          card.focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
